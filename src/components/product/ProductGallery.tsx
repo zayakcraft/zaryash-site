@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Product } from "@/lib/types";
-import { ProductVisual } from "@/components/ui/ProductVisual";
+import { ProductImage } from "@/components/ui/ProductImage";
 
 export function ProductGallery({ product }: { product: Product }) {
   const [active, setActive] = useState(0);
@@ -20,16 +20,19 @@ export function ProductGallery({ product }: { product: Product }) {
             }`}
             aria-label={`View ${img.variant}`}
           >
-            <ProductVisual label={img.variant} category={product.category} tone="charcoal" />
+            <ProductImage image={img} label={img.variant} category={product.category} tone="charcoal" />
           </button>
         ))}
       </div>
       <div className="aspect-[3/4] flex-1 overflow-hidden">
-        <ProductVisual
+        <ProductImage
+          image={image}
           label={product.name}
           sublabel={image?.variant}
           category={product.category}
           tone="charcoal"
+          priority
+          sizes="(min-width: 768px) 50vw, 100vw"
         />
       </div>
     </div>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import type { Product } from "@/lib/types";
 import { formatPrice } from "@/lib/utils";
-import { ProductVisual } from "@/components/ui/ProductVisual";
+import { ProductImage } from "@/components/ui/ProductImage";
 
 export function ProductCard({ product }: { product: Product }) {
   const [hover, setHover] = useState(false);
@@ -23,14 +23,20 @@ export function ProductCard({ product }: { product: Product }) {
             hover ? "opacity-0" : "opacity-100"
           }`}
         >
-          <ProductVisual label={product.name} category={product.category} tone="charcoal" />
+          <ProductImage
+            image={product.images[0]}
+            label={product.name}
+            category={product.category}
+            tone="charcoal"
+          />
         </div>
         <div
           className={`absolute inset-0 transition-opacity duration-500 ${
             hover ? "opacity-100" : "opacity-0"
           }`}
         >
-          <ProductVisual
+          <ProductImage
+            image={secondary}
             label={product.name}
             sublabel={secondary?.variant}
             category={product.category}

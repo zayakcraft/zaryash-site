@@ -3,7 +3,7 @@
 import type { Product } from "@/lib/types";
 import { useCartStore } from "@/lib/store/cart";
 import { formatPrice, cn } from "@/lib/utils";
-import { ProductVisual } from "@/components/ui/ProductVisual";
+import { ProductImage } from "@/components/ui/ProductImage";
 import { Button } from "@/components/ui/Button";
 import { useMemo, useState } from "react";
 import Link from "next/link";
@@ -64,7 +64,7 @@ export function CompleteTheLook({
             return (
               <div key={p.id} className={cn("relative", !active && "opacity-40")}>
                 <Link href={`/product/${p.slug}`} className="block aspect-[3/4] overflow-hidden">
-                  <ProductVisual label={p.name} category={p.category} tone="charcoal" />
+                  <ProductImage image={p.images[0]} label={p.name} category={p.category} tone="charcoal" />
                 </Link>
                 <div className="mt-3 flex items-start justify-between gap-2">
                   <div>

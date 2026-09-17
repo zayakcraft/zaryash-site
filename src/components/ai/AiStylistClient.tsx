@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { formatPrice } from "@/lib/utils";
-import { ProductVisual } from "@/components/ui/ProductVisual";
+import { ProductImage } from "@/components/ui/ProductImage";
 import { Button } from "@/components/ui/Button";
 import type { Product } from "@/lib/types";
 
@@ -86,7 +86,7 @@ export function AiStylistClient() {
                 {m.products.map((p) => (
                   <Link key={p.id} href={`/product/${p.slug}`} className="group text-left">
                     <div className="aspect-[3/4] overflow-hidden">
-                      <ProductVisual label={p.name} category={p.category} tone="charcoal" />
+                      <ProductImage image={p.images[0]} label={p.name} category={p.category} tone="charcoal" />
                     </div>
                     <p className="editorial mt-2 text-sm">{p.name}</p>
                     <p className="eyebrow text-z-warm-gray">{formatPrice(p.price, p.currency)}</p>

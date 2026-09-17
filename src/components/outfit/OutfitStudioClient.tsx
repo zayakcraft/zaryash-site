@@ -5,7 +5,7 @@ import Link from "next/link";
 import { products } from "@/lib/products";
 import type { Product } from "@/lib/types";
 import { formatPrice } from "@/lib/utils";
-import { ProductVisual } from "@/components/ui/ProductVisual";
+import { ProductImage } from "@/components/ui/ProductImage";
 import { Button } from "@/components/ui/Button";
 import { useCartStore } from "@/lib/store/cart";
 
@@ -66,7 +66,12 @@ export function OutfitStudioClient() {
               return (
                 <div key={slot.key} className="aspect-[3/4] border border-z-line">
                   {chosenItem ? (
-                    <ProductVisual label={chosenItem.name} category={chosenItem.category} tone="charcoal" />
+                    <ProductImage
+                      image={chosenItem.images[0]}
+                      label={chosenItem.name}
+                      category={chosenItem.category}
+                      tone="charcoal"
+                    />
                   ) : (
                     <div className="flex h-full w-full flex-col items-center justify-center text-center">
                       <p className="eyebrow text-z-warm-gray">{slot.label}</p>
@@ -106,7 +111,7 @@ export function OutfitStudioClient() {
                       className={`text-left ${active ? "" : "opacity-70 hover:opacity-100"}`}
                     >
                       <div className={`aspect-[3/4] overflow-hidden border ${active ? "border-z-ivory" : "border-transparent"}`}>
-                        <ProductVisual label={p.name} category={p.category} tone="charcoal" />
+                        <ProductImage image={p.images[0]} label={p.name} category={p.category} tone="charcoal" />
                       </div>
                       <p className="mt-2 text-xs leading-tight">{p.name}</p>
                       <p className="eyebrow text-z-warm-gray">{formatPrice(p.price, p.currency)}</p>

@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { getFeaturedProducts } from "@/lib/products";
-import { ProductVisual } from "@/components/ui/ProductVisual";
+import { ProductImage } from "@/components/ui/ProductImage";
 
 export function BeyondTheGarment() {
   const ref = useRef<HTMLDivElement>(null);
@@ -37,7 +37,13 @@ export function BeyondTheGarment() {
           style={{ scale, rotate }}
           className="relative z-0 aspect-[3/4] w-[62vw] max-w-[420px] shadow-[0_60px_120px_-40px_rgba(0,0,0,0.8)]"
         >
-          <ProductVisual label={featured.name} sublabel={featured.sku} category={featured.category} tone="charcoal" />
+          <ProductImage
+            image={featured.images[0]}
+            label={featured.name}
+            sublabel={featured.sku}
+            category={featured.category}
+            tone="charcoal"
+          />
         </motion.div>
 
         <motion.div

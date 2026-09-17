@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCartStore } from "@/lib/store/cart";
 import { formatPrice } from "@/lib/utils";
-import { ProductVisual } from "@/components/ui/ProductVisual";
+import { ProductImage } from "@/components/ui/ProductImage";
 import { ButtonLink } from "@/components/ui/Button";
 
 export function CartDrawer() {
@@ -50,7 +50,12 @@ export function CartDrawer() {
               {lines.map((line) => (
                 <li key={`${line.productId}-${line.color}-${line.size}`} className="flex gap-4">
                   <div className="h-28 w-20 shrink-0">
-                    <ProductVisual label={line.name} sublabel={line.color} tone="charcoal" />
+                    <ProductImage
+                      image={{ variant: "front", src: line.image, alt: line.name }}
+                      label={line.name}
+                      sublabel={line.color}
+                      tone="charcoal"
+                    />
                   </div>
                   <div className="flex flex-1 flex-col justify-between">
                     <div>
