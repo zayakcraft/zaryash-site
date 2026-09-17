@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
+/* ============================================================
+   ZARYASH — Design Tokens
+   "Wear your presence."
+   Palette: deep black, soft ivory, charcoal, warm gray,
+   muted metallic, subtle stone. Nothing loud, everything intentional.
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Self-hosting via next/font requires build-time network access to
+     Google Fonts, which this environment cannot reach. Fonts are loaded
+     via <link> tags in the document head instead (see layout.tsx) so the
+     production build never depends on that fetch succeeding. If you later
+     want next/font's self-hosted/zero-layout-shift behavior, swap these
+     for next/font/google (or next/font/local with downloaded files) once
+     you're building somewhere with normal internet access. */
+  --font-editorial: "Cormorant Garamond", Georgia, serif;
+  --font-ui: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --z-black: #0a0a08;
+  --z-charcoal: #161512;
+  --z-charcoal-2: #201f1c;
+  --z-stone: #c9c2b3;
+  --z-stone-dim: #9c9587;
+  --z-warm-gray: #8a8478;
+  --z-ivory: #f4f1ea;
+  --z-ivory-dim: #e7e2d6;
+  --z-metallic: #b8ad9a;
+  --z-line: rgba(244, 241, 234, 0.12);
+  --z-line-strong: rgba(244, 241, 234, 0.22);
+
+  --background: var(--z-black);
+  --foreground: var(--z-ivory);
+
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-precise: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-z-black: var(--z-black);
+  --color-z-charcoal: var(--z-charcoal);
+  --color-z-charcoal-2: var(--z-charcoal-2);
+  --color-z-stone: var(--z-stone);
+  --color-z-stone-dim: var(--z-stone-dim);
+  --color-z-warm-gray: var(--z-warm-gray);
+  --color-z-ivory: var(--z-ivory);
+  --color-z-ivory-dim: var(--z-ivory-dim);
+  --color-z-metallic: var(--z-metallic);
+  --color-z-line: var(--z-line);
+  --color-z-line-strong: var(--z-line-strong);
+
+  --font-serif: var(--font-editorial);
+  --font-sans: var(--font-ui);
+
+  --animate-fade-up: fade-up 0.9s var(--ease-cinematic) forwards;
+  --animate-fade-in: fade-in 1.2s var(--ease-cinematic) forwards;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--z-ivory);
+  color: var(--z-black);
+}
+
+/* Focus states — never sacrificed for aesthetics */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 1px solid var(--z-ivory);
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.editorial {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.hairline {
+  border-color: var(--z-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
